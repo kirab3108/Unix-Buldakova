@@ -1,6 +1,5 @@
 import socket
 import time
-
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 port = int(input('Введите здесь номер порта'))
 host = input('Введите здесь имя хоста')
@@ -19,15 +18,14 @@ try:
             client.send(input('Введите текст для сервера:').encode('utf-8'))
             data = client.recv(2048).decode('utf-8')
             time.sleep(3)
-
             if data.lower() == 'exit':
                 print('До свидания!')
                 client.send(encode('utf-8')
                 client.shutdown(socket.SHUT_WR)
                 exit()
-
             if data:
-                print('Данные с сервера:')
                 print(data)
 except KeyboardInterrupt:
     client.shutdown(socket.SHUT_WR)
+except BrokenPipeError:
+    server.shutdown(socket.SHUT_WR)
