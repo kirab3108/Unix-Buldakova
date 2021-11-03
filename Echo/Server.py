@@ -8,10 +8,8 @@ server.bind(('127.0.0.1', Port))
 try:
     while True:
         server.listen(1)
-
         client_socket, address = server.accept()
         print('Пользователь {address} подсоединен')
-
         client_socket.send(encode('utf-8'))
         while True:
             try:
